@@ -1,5 +1,8 @@
 <template>
-  <div v-for="(todo) in todos" :key="todo.id">
+  <div
+      v-for="(todo) in todos"
+      :key="todo.id"
+  >
     {{ todo.text }}
     <button @click="getOnDelete(todo.id)">Delete</button>
   </div>
@@ -29,7 +32,7 @@ export default {
       type: Function as PropType<UseTodos['onTodoDeleted']>
     }
   },
-  setup(props:any) {
+  setup(props: any) {
 
     logger.debug('piard');
 

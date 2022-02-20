@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  web:
+    container_name: todo-vue
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - .:/app
+    restart: always
+    command: npm run serve
+    ports:
+      - "8080:8080"
