@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="container">
 
     <div style="margin-bottom: 10px">
       <TaskCreator :onCreate="onTodoCreated"/>
@@ -50,7 +50,7 @@ export default defineComponent({
 </script>
 
 <style>
-#app {
+#container {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
