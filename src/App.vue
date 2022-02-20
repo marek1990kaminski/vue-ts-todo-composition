@@ -1,7 +1,11 @@
 <template>
   <div>
-    <div>
+
+    <div style="margin-bottom: 10px">
       <TaskCreator :onCreate="onTodoCreated"/>
+    </div>
+
+    <div>
       <TaskList
           :todos="todos"
           :changed="onTodoChanged"
@@ -12,8 +16,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { useTodos } from '@/composables/useTodos';
+import {defineComponent} from 'vue';
+import {useTodos} from '@/hooks/useTodos';
 import TaskList from '@/components/TaskList.vue';
 import TaskCreator from '@/components/TaskCreator.vue';
 

@@ -1,7 +1,7 @@
 <template>
 
   <form @submit.prevent="onSubmit">
-    <div>Add ne task</div>
+    <div>Add task</div>
     <input type="text" @input="onchange($event)" v-model="todoText">
     <input type="submit" value="ADD"/>
   </form>
@@ -12,7 +12,7 @@
 
 import loggerFactory, {Logger} from '@/utils/logger';
 import {PropType, ref} from 'vue';
-import {UseTodos} from '@/composables/useTodos';
+import {UseTodos} from '@/hooks/useTodos';
 
 const logger: Logger = loggerFactory.create('TaskCreator');
 

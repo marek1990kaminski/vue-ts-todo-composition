@@ -43,6 +43,7 @@ module.exports = {
     'space-before-function-paren': OFF,
     'no-use-before-define': OFF,
     '@typescript-eslint/no-use-before-define': [ERROR],
-    '@typescript-eslint/explicit-module-boundary-types': OFF
+    '@typescript-eslint/explicit-module-boundary-types': OFF,
+    'padded-blocks': OFF,
   }
 };

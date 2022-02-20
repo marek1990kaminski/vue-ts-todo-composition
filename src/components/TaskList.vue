@@ -1,13 +1,14 @@
 <template>
   <div v-for="(todo) in todos" :key="todo.id">
-    {{ todo }}
+    {{ todo.text }}
+    <button @click="getOnDelete(todo.id)">Delete</button>
   </div>
 </template>
 
 <script lang="ts">
 
 import loggerFactory, {Logger} from '@/utils/logger';
-import {Todo, UseTodos} from '@/composables/useTodos';
+import {Todo, UseTodos} from '@/hooks/useTodos';
 import {PropType} from 'vue';
 
 const logger: Logger = loggerFactory.create('TaskList');
@@ -29,8 +30,16 @@ export default {
     }
   },
   setup(props:any) {
+
     logger.debug('piard');
-    return {};
+
+    const getOnDelete = (id: Todo['id']) => {
+      props.deleted(id);
+    };
+
+    return {
+      getOnDelete
+    };
   }
 
 };
