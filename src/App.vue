@@ -1,18 +1,45 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div>
+    <div>
+      <TaskCreator :onCreate="onTodoCreated"/>
+      <TaskList
+          :todos="todos"
+          :changed="onTodoChanged"
+          :deleted="onTodoDeleted"
+      />
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
+import { defineComponent } from 'vue';
+import { useTodos } from '@/composables/useTodos';
+import TaskList from '@/components/TaskList.vue';
+import TaskCreator from '@/components/TaskCreator.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
-    HelloWorld
+    TaskCreator,
+    TaskList
+  },
+  setup() {
+    const {
+      todos,
+      onTodoCreated,
+      onTodoDeleted,
+      onTodoChanged
+    } = useTodos();
+
+    return {
+      todos,
+      onTodoChanged,
+      onTodoDeleted,
+      onTodoCreated
+    };
   }
-})
+
+});
 </script>
 
 <style>
