@@ -20,6 +20,7 @@ import {defineComponent} from 'vue';
 import {useTodos} from '@/hooks/useTodos';
 import TaskList from '@/components/TaskList.vue';
 import TaskCreator from '@/components/TaskCreator.vue';
+import {useLocalStorage} from '@/hooks/useLocalStorage';
 
 export default defineComponent({
   name: 'App',
@@ -34,6 +35,8 @@ export default defineComponent({
       onTodoDeleted,
       onTodoChanged
     } = useTodos();
+
+    useLocalStorage('todos', todos);
 
     return {
       todos,

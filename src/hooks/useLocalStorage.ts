@@ -1,6 +1,7 @@
-import { onBeforeMount, Ref, watch } from 'vue';
+import {onBeforeMount, Ref, watch} from 'vue';
 
 export const useLocalStorage = (key: string, ref: Ref<any>) => {
+
   onBeforeMount(() => {
     const value = window.localStorage.getItem(key);
     if (value) {
