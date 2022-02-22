@@ -2,7 +2,7 @@
 
   <form @submit.prevent="onSubmit">
     <div>Add task</div>
-    <input type="text" @input="onchange($event)" v-model="todoText">
+    <input v-model="todoText" type="text" @input="onchange">
     <input type="submit" value="ADD"/>
   </form>
 
@@ -10,9 +10,9 @@
 
 <script lang="ts">
 
+import {UseTodos} from '@/hooks/useTodos';
 import loggerFactory, {Logger} from '@/utils/logger';
 import {PropType, ref} from 'vue';
-import {UseTodos} from '@/hooks/useTodos';
 
 const logger: Logger = loggerFactory.create('TaskCreator');
 
@@ -24,7 +24,7 @@ export default {
   props: {
     onCreate: Function as PropType<UseTodos['onTodoCreated']>
   },
-  setup(properties: any) {
+  setup(props: any) {
     const todoText = ref('');
 
     const onchange = (event: any): void => {
@@ -32,19 +32,26 @@ export default {
     };
 
     const onSubmit = () => {
-      logger.debug(
-        'onSubmit!!!',
-        {
-          id: getId(),
-          text: todoText,
-          completed: false
-        }
-      );
-      properties.onCreate({
+      logger.debug('onSubmit!!!', {
         id: getId(),
-        text: todoText.value,
+        text: todoText,
         completed: false
       });
+
+      if (todoText.value === '') {
+        alert('You can\'t add empty task');
+      } else {
+        props.onCreate(
+          {
+            id: getId(),
+            text: todoText.value,
+            completed: false
+          }
+        );
+        todoText.value = '';
+
+      }
+
     };
 
     return {

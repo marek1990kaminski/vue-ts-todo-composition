@@ -1,10 +1,11 @@
 <template>
   <div
       v-for="(todo) in todos"
+      id="taskContainer"
       :key="todo.id"
   >
     {{ todo.text }}
-    <button @click="getOnDelete(todo.id)">Delete</button>
+    <button @click.prevent="getOnDelete(todo.id)">Delete</button>
   </div>
 </template>
 
@@ -34,8 +35,6 @@ export default {
   },
   setup(props: any) {
 
-    logger.debug('piard');
-
     const getOnDelete = (id: Todo['id']) => {
       props.deleted(id);
     };
@@ -49,5 +48,11 @@ export default {
 </script>
 
 <style scoped>
-
+#taskContainer {
+  display: flex;
+  justify-content: space-between;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
 </style>
